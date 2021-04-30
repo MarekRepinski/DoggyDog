@@ -1,0 +1,312 @@
+/* Display custumer information in flip-card style */
+
+/* Dogname text */
+.ddc-reg.dog-name {
+    font-size: 6vw;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Decoration to dogname text */
+.ddc-reg.decoration {
+    color: red;
+}
+
+.ddc-reg.wrapper {
+    grid-row: 2;
+    grid-column: 2 / 5;
+    background-color: transparent;
+}
+
+/* div to handle the flipping of cards */
+.ddc-reg.flip-card {
+    grid-row: 2;
+    grid-column: 2 / 5;
+    background-color: transparent;
+    position: relative;
+    width: 100%;
+    height: 94%;
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: 0.05fr 1fr 0.07fr;
+    grid-template-rows: 1fr 1fr 2%;
+    perspective: 1000px;
+}
+
+/* Pictures in the flipping card */
+.ddc-reg.flip-card img{
+    margin-top: 20px;
+    width: 70%;
+    height: 70%;
+    object-fit: cover;
+    border: 1px solid gray;
+    box-shadow: 1px 1px lightgrey;
+}
+
+/* All cards */
+.ddc-reg.flip-card-flip, .ddc-reg.flip-card-under, .ddc-reg.flip-card-extra, .ddc-reg.flip-card-next,
+.ddc-reg.flip-card-flip-bottom, .ddc-reg.flip-card-under-bottom, .ddc-reg.flip-card-next-bottom, .ddc-reg.flip-card-extra-bottom  {    
+    grid-column: 2 / 2;
+    grid-row: 1 / 2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    min-width: 240px;
+    text-align: center;
+}
+
+/* All bottom cards */
+.ddc-reg.flip-card-flip-bottom, .ddc-reg.flip-card-under-bottom, .ddc-reg.flip-card-extra-bottom, .ddc-reg.flip-card-next-bottom  {
+    grid-row: 2 / 3;
+}
+
+/* The two top/bottom cards that can be flipped */
+.ddc-reg.flip-card-flip, .ddc-reg.flip-card-next,
+.ddc-reg.flip-card-flip-bottom, .ddc-reg.flip-card-next-bottom {
+    transform-origin: bottom;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    z-index: 15;
+}
+
+/* Switch flip-side om bottom cards */
+.ddc-reg.flip-card-flip-bottom, .ddc-reg.flip-card-next-bottom {
+    transform-origin: top;
+}
+
+/* The card that layes under the first card */
+.ddc-reg.flip-card-under, .ddc-reg.flip-card-under-bottom {
+    margin-top: 1px;
+    margin-left: 2px;
+    z-index: 10;
+}
+
+/* Dummy card - for effect only */
+.ddc-reg.flip-card-extra, .ddc-reg.flip-card-extra-bottom {
+    margin-top: 2px;
+    margin-left: 4px;
+    z-index: 5;
+}
+
+/* Pervios top/bottom card that can be fllipped - reversed */
+.ddc-reg.flip-card-next, .ddc-reg.flip-card-next-bottom {
+    opacity: 0;
+    transform: rotateX(-90deg);
+    z-index: 15;
+}
+
+/* Front side of all top cards (and bottom cards) */
+.ddc-reg.flip-card-front, .ddc-reg.flip-card-front-bottom {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border: 1px gray;
+    border-style: solid solid dotted solid;
+    border-radius: 15px 15px 0px 0px;
+    background-color: white;
+    color: black;
+}
+
+/* Front side of all bottom cards */
+.ddc-reg.flip-card-front-bottom {
+    border-style: dotted solid solid solid;
+    border-radius: 0px 0px 15px 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    gap: 1px;
+    height: 90%;
+    width: 90%;
+    justify-items: left;
+    align-items: center;
+    padding: 5%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 4.5vw;
+}
+
+.ddc-reg.title {
+    font-weight: bold;
+}
+
+.ddc-reg.breed-info {
+    grid-column: 4;
+    justify-self: right;
+}
+
+.ddc-reg.breed-info button {
+    font-size: 3vw;
+    font-weight: bold;
+}
+
+.ddc-reg.owner {
+    grid-column: 2 / 4;
+}
+
+.ddc-reg.phone {
+    font-size: 8vw;
+    justify-self: right;
+    align-items: flex-start;
+}
+
+.ddc-reg.sex {
+    font-size: 8vw;
+    justify-self: left;
+}
+
+.ddc-reg.checked-in {
+    grid-column: 1 / 3;
+}
+
+.ddc-reg.chip-no {
+    grid-column: 3 / 5;
+}
+
+.ddc-reg.toggle-button {
+    grid-column: 3 / 5;
+    justify-self: right;
+}
+
+/* Animation to raise card to 90 deg*/
+@keyframes flip-card-flip-animate-up {
+    0% {transform: rotateX(0deg); opacity: 1;}
+    99% {transform: rotateX(-90deg); opacity: 1;}
+    100% {transform: rotateX(-90deg); opacity: 0;}
+}
+
+@keyframes flip-card-animate-bottom-up {
+    0% {transform: rotateX(0deg); opacity: 1;}
+    99% {transform: rotateX(90deg); opacity: 1;}
+    100% {transform: rotateX(90deg); opacity: 0;}
+}
+
+/* Animation to lower card to 0 deg*/
+@keyframes flip-card-animate-down {
+    0% {transform: rotateX(-90deg); opacity: 0;}
+    51% {transform: rotateX(-90deg); opacity: 1;}
+    100% {transform: rotateX(0deg); opacity: 1;}
+}
+
+@keyframes flip-card-animate-bottom-down {
+    0% {transform: rotateX(90deg); opacity: 0;}
+    51% {transform: rotateX(90deg); opacity: 1;}
+    100% {transform: rotateX(0deg); opacity: 1;}
+}
+
+
+/* Sliding toggle switch */
+.ddc-reg.switch {
+    position: relative;
+    display: inline-block;
+    width: 16vw;
+    height: 8vw;
+}
+
+/* Hide default HTML checkbox */
+.ddc-reg.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.ddc-reg.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(233, 15, 15);
+    transition: .4s;
+    border-radius: 10%;
+}
+
+.ddc-reg.slider:before {
+    position: absolute;
+    content: "";
+    height: 6vw;
+    width: 6vw;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 10%;
+}
+
+input:checked + .ddc-reg.slider {
+    background-color: rgb(14, 204, 14);
+}
+
+input:focus + .ddc-reg.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .ddc-reg.slider:before {
+    transform: translateX(6vw);
+}
+
+@media screen and (min-width: 600px) {
+    .ddc-reg.flip-card-front-bottom {
+        font-size: 1.6em;
+    }
+
+    .ddc-reg.phone, .ddc-reg.sex{
+        font-size: 2em;
+    }
+    
+    .ddc-reg.switch {
+        width: 4em;
+        height: 2em;
+    }
+    
+    .ddc-reg.slider:before {
+        height: 1.5em;
+        width: 1.5em;
+    }
+    
+    input:checked + .ddc-reg.slider:before {
+        transform: translateX(1.5em);
+    }    
+
+    .ddc-reg.dog-name {
+        font-size: 2.5em;
+    }
+
+    .ddc-reg.breed-info button {
+        font-size: 1em;
+    }   
+}
+
+/*---------------------------------------*/
+/*            Navigation buttons         */
+/*---------------------------------------*/
+
+/* The look of the navigationbuttons */
+.ddc-reg.nav-button {
+    margin-top: 10px;
+    display: none;
+    width: 100%;
+}
+
+/* Leftbutton - pick up the last card and put it in front */
+.ddc-reg #leftButton {
+    width: 100%;
+    grid-column: 2;
+}
+
+/* Rightbutton */
+.ddc-reg #rightButton {
+    width: 100%;
+    grid-column: 4;
+}
+
+@media screen and (min-height: 800px) {
+    .ddc-reg.nav-button {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+    }    
+}
