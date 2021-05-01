@@ -145,6 +145,10 @@
     grid-column: 2 / 4;
 }
 
+.ddc-reg #no-dog {
+    grid-column: 1 / 5;
+}
+
 .ddc-reg.phone {
     font-size: 8vw;
     justify-self: right;

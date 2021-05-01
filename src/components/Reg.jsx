@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './reg.css';
+import noDog from '../img/nodog.png';
 let cardIndex = 0;
 let yDown = null;
 let animationGoingOn = false;
@@ -9,19 +10,24 @@ const Reg = () => {
     const [animPrev, setAnimPrev] = useState(false);
 
     let obj = JSON.parse(sessionStorage.data);
-    let cardIndexPrev = (cardIndex - 1) < 0 ? obj.record.length - 1 : cardIndex - 1;
-    let cardIndexNext = (cardIndex + 1) >= obj.record.length ? 0 : cardIndex + 1;
+    let recordLength = obj.record.length;
+    if (cardIndex >= recordLength) { cardIndex = 0 }
+    let cardIndexPrev = (cardIndex - 1) < 0 ? recordLength - 1 : cardIndex - 1;
+    let cardIndexNext = (cardIndex + 1) >= recordLength ? 0 : cardIndex + 1;
+    console.log('reg ' + recordLength);
 
     useEffect(() => {
-        cardIndex = obj.record.length - 1;
-        animationGoingOn = true;
-        setAnimNext(true);
-        setTimeout(() => {
-            cardIndex++;
-            cardIndex = 0;
-            animationGoingOn = false;
-            setAnimNext(false);
-        }, 500);
+        if (recordLength > 1) {
+            cardIndex = recordLength - 1;
+            animationGoingOn = true;
+            setAnimNext(true);
+            setTimeout(() => {
+                cardIndex++;
+                cardIndex = 0;
+                animationGoingOn = false;
+                setAnimNext(false);
+            }, 500);
+        }
     }, [])
 
     // Next dog
@@ -45,16 +51,29 @@ const Reg = () => {
     let flipCardFlip = cardTop(cardIndex, 'ddc-reg flip-card-flip', aminNext ? selectedAminationFlipCardFlipUp : null, obj);
     let flipCardUnder = cardTop(cardIndexNext, 'ddc-reg flip-card-under', null, obj);
     let flipCardNext = cardTop(cardIndexPrev, 'ddc-reg flip-card-next', animPrev ? selectedAminationFlipCardNextDown : null, obj);
-    let flipCardFlipBottom = CardBottom(cardIndex, 'ddc-reg flip-card-flip-bottom', animPrev ? selectedAminationFlipCardFlipBottomUp : null, obj);
-    let flipCardUnderBottom = CardBottom(cardIndexPrev, 'ddc-reg flip-card-under-bottom', null, obj);
-    let flipCardNextBottom = CardBottom(cardIndexNext, 'ddc-reg flip-card-next-bottom', aminNext ? selectedAminationFlipCardNextBottomDown : null, obj);
+    let flipCardFlipBottom = null;
+    let flipCardUnderBottom = null;
+    let flipCardNextBottom = null;
+    if (obj.record[cardIndex].chipNumber === 'AIK1891AIK') {
+        console.log(obj.record[cardIndex].chipNumber);
+        flipCardFlipBottom = cardBottomEmpty('ddc-reg flip-card-flip-bottom', animPrev ? selectedAminationFlipCardFlipBottomUp : null);
+        flipCardUnderBottom = cardBottomEmpty('ddc-reg flip-card-under-bottom', null);
+        flipCardNextBottom = cardBottomEmpty('ddc-reg flip-card-next-bottom', aminNext ? selectedAminationFlipCardNextBottomDown : null);
+    } else {
+        flipCardFlipBottom = CardBottom(cardIndex, 'ddc-reg flip-card-flip-bottom', animPrev ? selectedAminationFlipCardFlipBottomUp : null, obj);
+        flipCardUnderBottom = CardBottom(cardIndexPrev, 'ddc-reg flip-card-under-bottom', null, obj);
+        flipCardNextBottom = CardBottom(cardIndexNext, 'ddc-reg flip-card-next-bottom', aminNext ? selectedAminationFlipCardNextBottomDown : null, obj);
+    }
+    let flipCardExtra = '';
+    let flipCardExtraBottom = '';
+    if (recordLength > 2) {
+        flipCardExtra = <div className="ddc-reg flip-card-extra"><div className="ddc-reg flip-card-front"></div></div>;
+        flipCardExtraBottom = <div className="ddc-reg flip-card-extra-bottom"><div className="ddc-reg flip-card-front-bottom"></div></div>;
+    }
 
     return (
         <div className="ddc-reg wrapper" onTouchStart={(e) => { yDown = e.touches[0].clientY }} onTouchMove={(e) => {
             if (!animationGoingOn) {
-                console.log('yDown ' + yDown);
-                console.log('clientY ' + e.touches[0].clientY);
-                console.log('= ' + (yDown - e.touches[0].clientY));
                 if ((yDown - e.touches[0].clientY) > 5) {
                     animationGoingOn = true;
                     setAnimPrev(true);
@@ -79,16 +98,12 @@ const Reg = () => {
             <div className="ddc-reg flip-card">
                 {flipCardFlip}
                 {flipCardUnder}
-                <div className="ddc-reg flip-card-extra">
-                    <div className="ddc-reg flip-card-front"></div>
-                </div>
+                {flipCardExtra}
                 {flipCardNext}
 
                 {flipCardFlipBottom}
                 {flipCardUnderBottom}
-                <div className="ddc-reg flip-card-extra-bottom">
-                    <div className="ddc-reg flip-card-front-bottom"></div>
-                </div>
+                {flipCardExtraBottom}
                 {flipCardNextBottom}
             </div>
             <div className="ddc-reg nav-button">
@@ -125,7 +140,7 @@ function cardTop(index, className, style, obj) {
     return (
         <div className={className} style={style}>
             <div className="ddc-reg flip-card-front">
-                <img src={obj.record[index].img} alt={obj.record[index].name} />
+                <img src={obj.record[index].img === '' ? noDog: obj.record[index].img} alt={obj.record[index].name} />
                 <p className="ddc-reg dog-name"><span className="ddc-reg decoration">&hearts;&nbsp;
             </span>{obj.record[index].name}<span className="ddc-reg decoration">&nbsp;&hearts;</span></p>
             </div>
@@ -171,6 +186,19 @@ function CardBottom(index, className, style, obj) {
                         <span className="ddc-reg slider"></span>
                     </label>
                 </div>
+            </div>
+        </div>
+    )
+}
+
+
+function cardBottomEmpty(className, style) {
+    return (
+        <div className={className} style={style}>
+            <div className="ddc-reg flip-card-front-bottom">
+                <div id="no-dog" className="ddc-reg title">
+                    Sorry but we can not find any dog by that name.....
+            </div>
             </div>
         </div>
     )

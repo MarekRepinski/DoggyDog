@@ -39,3 +39,31 @@
     z-index: inherit;
 }
  
+/* The search window */
+.nav.search-container{
+  display: none;
+  position: absolute;
+  height: fit-content;
+  width: 240px;
+  justify-self: right;
+  margin-top: 40px;
+  margin-right: -100px;
+  background-color: white;
+  font-size: 1.2rem;
+  padding: 10px;
+  box-shadow: 3px 3px 10px black;
+  align-content: center;
+  z-index: 99;
+}
+
+/* Toggle to show the search window */
+.nav.search-container.show{
+  display: block;
+}
+
+/* The search button */
+.navx.search-button {
+  width: 70px;
+  padding: 3px;
+  margin-left: 5px;
+}
