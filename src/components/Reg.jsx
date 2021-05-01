@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './reg.css';
-let obj = JSON.parse(sessionStorage.data);
 let cardIndex = 0;
+let yDown = null;
+let animationGoingOn = false;
 
 const Reg = () => {
     const [aminNext, setAnimNext] = useState(false);
@@ -10,6 +11,18 @@ const Reg = () => {
     let obj = JSON.parse(sessionStorage.data);
     let cardIndexPrev = (cardIndex - 1) < 0 ? obj.record.length - 1 : cardIndex - 1;
     let cardIndexNext = (cardIndex + 1) >= obj.record.length ? 0 : cardIndex + 1;
+
+    useEffect(() => {
+        cardIndex = obj.record.length - 1;
+        animationGoingOn = true;
+        setAnimNext(true);
+        setTimeout(() => {
+            cardIndex++;
+            cardIndex = 0;
+            animationGoingOn = false;
+            setAnimNext(false);
+        }, 500);
+    }, [])
 
     // Next dog
     const selectedAminationFlipCardFlipUp = {
@@ -26,24 +39,43 @@ const Reg = () => {
     }
 
     const selectedAminationFlipCardNextDown = {
-        animationDelay: '0.9s',
         animation: 'flip-card-animate-down 0.4s linear forwards'  /* */
     }
 
-    // useEffect(() => {
-    //     cardIndexPrev = (cardIndex - 1) < 0 ? obj.record.length - 1 : cardIndex - 1;
-    //     cardIndexNext = (cardIndex + 1) >= obj.record.length ? 0 : cardIndex + 1;
-    // }, [])
-
-    let flipCardFlip = cardTop(cardIndex, 'ddc-reg flip-card-flip', aminNext ? selectedAminationFlipCardFlipUp : null);
-    let flipCardUnder = cardTop(cardIndexNext, 'ddc-reg flip-card-under', null);
-    let flipCardNext = cardTop(cardIndexPrev, 'ddc-reg flip-card-next', animPrev ? selectedAminationFlipCardNextDown : null);
-    let flipCardFlipBottom = cardBottom(cardIndex, 'ddc-reg flip-card-flip-bottom', animPrev ? selectedAminationFlipCardFlipBottomUp : null);
-    let flipCardUnderBottom = cardBottom(cardIndexPrev, 'ddc-reg flip-card-under-bottom', null);
-    let flipCardNextBottom = cardBottom(cardIndexNext, 'ddc-reg flip-card-next-bottom', aminNext ? selectedAminationFlipCardNextBottomDown : null);
+    let flipCardFlip = cardTop(cardIndex, 'ddc-reg flip-card-flip', aminNext ? selectedAminationFlipCardFlipUp : null, obj);
+    let flipCardUnder = cardTop(cardIndexNext, 'ddc-reg flip-card-under', null, obj);
+    let flipCardNext = cardTop(cardIndexPrev, 'ddc-reg flip-card-next', animPrev ? selectedAminationFlipCardNextDown : null, obj);
+    let flipCardFlipBottom = CardBottom(cardIndex, 'ddc-reg flip-card-flip-bottom', animPrev ? selectedAminationFlipCardFlipBottomUp : null, obj);
+    let flipCardUnderBottom = CardBottom(cardIndexPrev, 'ddc-reg flip-card-under-bottom', null, obj);
+    let flipCardNextBottom = CardBottom(cardIndexNext, 'ddc-reg flip-card-next-bottom', aminNext ? selectedAminationFlipCardNextBottomDown : null, obj);
 
     return (
-        <div className="ddc-reg wrapper">
+        <div className="ddc-reg wrapper" onTouchStart={(e) => { yDown = e.touches[0].clientY }} onTouchMove={(e) => {
+            if (!animationGoingOn) {
+                console.log('yDown ' + yDown);
+                console.log('clientY ' + e.touches[0].clientY);
+                console.log('= ' + (yDown - e.touches[0].clientY));
+                if ((yDown - e.touches[0].clientY) > 5) {
+                    animationGoingOn = true;
+                    setAnimPrev(true);
+                    setTimeout(() => {
+                        yDown = e.touches[0].clientY;
+                        cardIndex = (cardIndex - 1) < 0 ? obj.record.length - 1 : cardIndex - 1;
+                        animationGoingOn = false;
+                        setAnimPrev(false);
+                    }, 500);
+                } else if ((yDown - e.touches[0].clientY) < -5) {
+                    animationGoingOn = true;
+                    setAnimNext(true);
+                    setTimeout(() => {
+                        yDown = e.touches[0].clientY;
+                        cardIndex = (cardIndex + 1) >= obj.record.length ? 0 : cardIndex + 1;
+                        animationGoingOn = false;
+                        setAnimNext(false);
+                    }, 500);
+                }
+            }
+        }}>
             <div className="ddc-reg flip-card">
                 {flipCardFlip}
                 {flipCardUnder}
@@ -61,27 +93,35 @@ const Reg = () => {
             </div>
             <div className="ddc-reg nav-button">
                 <button id="leftButton" type="button" onClick={() => {
-                    setAnimPrev(true);
-                    setTimeout(() => {
-                        cardIndex--;
-                        if (cardIndex < 0) {cardIndex = obj.record.length - 1}
-                        setAnimPrev(false);
-                    }, 500);
+                    if (!animationGoingOn) {
+                        animationGoingOn = true;
+                        setAnimPrev(true);
+                        setTimeout(() => {
+                            cardIndex--;
+                            if (cardIndex < 0) { cardIndex = obj.record.length - 1 }
+                            animationGoingOn = false;
+                            setAnimPrev(false);
+                        }, 500);
+                    }
                 }}>{String.fromCharCode(8592)}</button>
                 <button id="rightButton" type="button" onClick={() => {
-                    setAnimNext(true);
-                    setTimeout(() => {
-                        cardIndex++;
-                        if (cardIndex >= obj.record.length) {cardIndex = 0}
-                        setAnimNext(false);
-                    }, 500);                    
+                    if (!animationGoingOn) {
+                        animationGoingOn = true;
+                        setAnimNext(true);
+                        setTimeout(() => {
+                            cardIndex++;
+                            if (cardIndex >= obj.record.length) { cardIndex = 0 }
+                            animationGoingOn = false;
+                            setAnimNext(false);
+                        }, 500);
+                    }
                 }}>{String.fromCharCode(8594)}</button>
             </div>
         </div>
     )
 }
 
-function cardTop(index, className, style) {
+function cardTop(index, className, style, obj) {
     return (
         <div className={className} style={style}>
             <div className="ddc-reg flip-card-front">
@@ -93,11 +133,12 @@ function cardTop(index, className, style) {
     )
 }
 
-function cardBottom(index, className, style) {
+function CardBottom(index, className, style, obj) {
     let phoneNo = 'tel: ' + obj.record[index].owner.phoneNumber;
     let sex = 'unknown';
     if (obj.record[index].sex === 'female') { sex = String.fromCharCode(9792) }
     if (obj.record[index].sex === 'male') { sex = String.fromCharCode(9794) }
+    const [checked, setChecked] = React.useState(obj.record[index].present);
 
     return (
         <div className={className} style={style}>
@@ -122,7 +163,11 @@ function cardBottom(index, className, style) {
                 <div className="ddc-reg title checked-in">Checked in:</div>
                 <div className="ddc-reg toggle-button">
                     <label className="ddc-reg switch">
-                        <input type="checkbox" defaultChecked={obj.record[index].present} />
+                        <input type="checkbox"
+                            id={obj.record[index].chipNumber}
+                            defaultChecked={checked}
+                            onChange={() => setChecked(!checked)}
+                        />
                         <span className="ddc-reg slider"></span>
                     </label>
                 </div>
