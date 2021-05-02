@@ -14,7 +14,6 @@ const Reg = () => {
     if (cardIndex >= recordLength) { cardIndex = 0 }
     let cardIndexPrev = (cardIndex - 1) < 0 ? recordLength - 1 : cardIndex - 1;
     let cardIndexNext = (cardIndex + 1) >= recordLength ? 0 : cardIndex + 1;
-    console.log('reg ' + recordLength);
 
     useEffect(() => {
         if (recordLength > 1) {

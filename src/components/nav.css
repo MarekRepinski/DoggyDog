@@ -67,3 +67,47 @@
   padding: 3px;
   margin-left: 5px;
 }
+
+/* The drop down menu */
+.nav.menu-dd{
+  display: none;
+  position: absolute;
+  height: fit-content;
+  width: fit-content;
+  justify-self: right;
+  margin-top: 0px;
+  margin-left: -15%;
+  background-color: white;
+  font-size: 1.2rem;
+  box-shadow: 3px 3px 10px black;
+  padding: 8px;
+  z-index: 99;
+}
+
+/* Toggle to show the drop down menu */
+.nav.menu-dd.show{
+  display: block;
+}
+
+.navx.dummy-input{
+  height: 0px;
+  padding: 0px;
+  margin: 0px;
+  border-width: 0px;
+  border-style: none;
+  z-index: 1;
+}
+
+/* The options in the drop down menu */
+.navx.menu-option{
+  color: #419add;
+  font-family: Tahoma, sans-serif;
+  padding: 3px 10px 3px 10px;
+  text-align: left;
+}
+
+@media screen and (min-width: 600px) {
+  .nav.menu-dd{
+    margin-left: -60px;
+  }   
+}

@@ -3,6 +3,8 @@ import './App.css';
 import Nav from './components/Nav';
 import SplashScreen from './components/SplashScreen';
 import Reg from './components/Reg';
+import { HasRouter as Router, Route, Switch } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 
 function App() {
   const [dataLoaded, setDataLoaded] = useState(false);
