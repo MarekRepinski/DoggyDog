@@ -1,4 +1,5 @@
 import './nav.css';
+import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import logo from '../img/logo3.png';
 import magGlasss from '../img/Magnifying Glass.png';
@@ -20,7 +21,6 @@ const Nav = ({ searchDogs }) => {
     }, [showSearch]);
 
     useEffect(() => {
-        console.log('showMenu: ' + showMenu);
         if (showMenu) { menuWindow.current.focus(); }
     }, [showMenu]);
 
@@ -36,9 +36,10 @@ const Nav = ({ searchDogs }) => {
                 <div className={menuClass}>
                     <div className="navx menu-option">Webcam</div>
                     <div className="navx menu-option">Apply</div>
-                    <div className="navx menu-option">About</div>
+                    <Link to="/about" className="navx menu-link">
+                        <div className="navx menu-option">About</div>
+                    </Link>
                     <input type="text" className="navx dummy-input" size="1"  ref={menuWindow} onBlur={() => {
-                        console.log('Bluring');
                         setTimeout(() => {
                             setShowMenu(false);
                         }, 500)
@@ -56,7 +57,6 @@ const Nav = ({ searchDogs }) => {
                         }, 500)
                     }} />
                 <button id="search" className="navx search-button" type="button" onClick={() => {
-                    console.log(searchString);
                     searchDogs(searchString);
                 }}>Search</button>
             </div>

@@ -1,33 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Nav from './components/Nav';
+import NavShort from './components/NavShort';
 import SplashScreen from './components/SplashScreen';
 import Reg from './components/Reg';
-import { HasRouter as Router, Route, Switch } from 'react-router-dom';
-import { useHistory} from 'react-router-dom';
+import About from './components/About';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
-  const [dataLoaded, setDataLoaded] = useState(false);
   const [reload, setReload] = useState(false);
   const url = 'https://api.jsonbin.io/v3/b/608566b1c7df3422f7fd4caf';
-  let showSplashScreen = dataLoaded ? null : <SplashScreen />;
-  let showReg = dataLoaded ? <Reg key={reload} /> : null;
 
   useEffect(() => {
     sessionStorage.setItem('dataLoaded', false);
-    getCustomers(url).then((value) => {
-      setTimeout(() => {
-        setDataLoaded(value);
-      }, 10000);
-    });
+    getCustomers(url);
   }, [])
 
   return (
     <div className="App">
       <div className="left-side"></div>
-      <Nav searchDogs={(e) => { createList(e); setReload(!reload); }} />
-      {showSplashScreen}
-      {showReg}
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <NavShort />
+            <SplashScreen />
+          </Route>
+          <Route path="/reg">
+            <Nav searchDogs={(e) => { createList(e); setReload(!reload); }} />
+            <Reg key={reload} />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+        </Switch>
+      </Router>
       <div className="right-side"></div>
     </div>
   );

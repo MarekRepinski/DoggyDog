@@ -100,10 +100,15 @@
 
 /* The options in the drop down menu */
 .navx.menu-option{
-  color: #419add;
+  color: black;
   font-family: Tahoma, sans-serif;
   padding: 3px 10px 3px 10px;
   text-align: left;
+  text-decoration: none;
+}
+
+.navx.menu-link{
+  text-decoration-line: none;
 }
 
 @media screen and (min-width: 600px) {

@@ -54,7 +54,6 @@ const Reg = () => {
     let flipCardUnderBottom = null;
     let flipCardNextBottom = null;
     if (obj.record[cardIndex].chipNumber === 'AIK1891AIK') {
-        console.log(obj.record[cardIndex].chipNumber);
         flipCardFlipBottom = cardBottomEmpty('ddc-reg flip-card-flip-bottom', animPrev ? selectedAminationFlipCardFlipBottomUp : null);
         flipCardUnderBottom = cardBottomEmpty('ddc-reg flip-card-under-bottom', null);
         flipCardNextBottom = cardBottomEmpty('ddc-reg flip-card-next-bottom', aminNext ? selectedAminationFlipCardNextBottomDown : null);
@@ -160,8 +159,7 @@ function CardBottom(index, className, style, obj) {
                 <div className="ddc-reg title checked-in">Chip no:</div>
                 <div className="ddc-reg chip-no">{obj.record[index].chipNumber}</div>
                 <div className="ddc-reg title">Breed:</div>
-                <div className="ddc-reg owner">{obj.record[index].breed}</div>
-                <div className="ddc-reg breed-info"><button>More info</button></div>
+                <div className="ddc-reg breed">{obj.record[index].breed}</div>
                 <div className="ddc-reg title">Sex:</div>
                 <div className="ddc-reg sex">{sex}</div>
                 <div className="ddc-reg title">Age:</div>

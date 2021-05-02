@@ -3,8 +3,16 @@ import dog1 from '../img/dog1.png';
 import dog2 from '../img/dog2.png';
 import dog3 from '../img/dog3.png';
 import fence from '../img/fence2.png';
+import { useHistory } from 'react-router-dom';
 
 const SplashScreen = () => {
+    const history = useHistory();
+
+    setTimeout(() => {
+        if (sessionStorage.dataLoaded) {
+            history.replace("/reg");
+        }
+    }, 10000);
 
     return (
         <div className="splash">
@@ -12,10 +20,10 @@ const SplashScreen = () => {
                 DOGGY DAYCARE<br /> Brings the Bow-Wow in to your best friends life.
             </div>
             <div className="splash anim">
-                <img id="fence" src={fence} alt=""/>
-                <img id="dog1" src={dog1} alt=""/>
-                <img id="dog2" src={dog2} alt=""/>
-                <img id="dog3" src={dog3} alt=""/>
+                <img id="fence" src={fence} alt="" />
+                <img id="dog1" src={dog1} alt="" />
+                <img id="dog2" src={dog2} alt="" />
+                <img id="dog3" src={dog3} alt="" />
             </div>
         </div>
     )

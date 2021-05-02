@@ -131,9 +131,9 @@
     font-weight: bold;
 }
 
-.ddc-reg.breed-info {
-    grid-column: 4;
-    justify-self: right;
+.ddc-reg.breed {
+    grid-column: 2 / 5;
+    justify-self: left;
 }
 
 .ddc-reg.breed-info button {
