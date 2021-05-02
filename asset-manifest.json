@@ -1,22 +1,30 @@
 {
   "files": {
-    "main.css": "/DoggyDog/static/css/main.851cdb2c.chunk.css",
-    "main.js": "/DoggyDog/static/js/main.83bbd26e.chunk.js",
-    "main.js.map": "/DoggyDog/static/js/main.83bbd26e.chunk.js.map",
-    "runtime-main.js": "/DoggyDog/static/js/runtime-main.b4d9e835.js",
-    "runtime-main.js.map": "/DoggyDog/static/js/runtime-main.b4d9e835.js.map",
-    "static/js/2.3e1429c1.chunk.js": "/DoggyDog/static/js/2.3e1429c1.chunk.js",
-    "static/js/2.3e1429c1.chunk.js.map": "/DoggyDog/static/js/2.3e1429c1.chunk.js.map",
-    "static/js/3.cd55acb1.chunk.js": "/DoggyDog/static/js/3.cd55acb1.chunk.js",
-    "static/js/3.cd55acb1.chunk.js.map": "/DoggyDog/static/js/3.cd55acb1.chunk.js.map",
+    "main.css": "/DoggyDog/static/css/main.aa514e80.chunk.css",
+    "main.js": "/DoggyDog/static/js/main.7c9f12fa.chunk.js",
+    "main.js.map": "/DoggyDog/static/js/main.7c9f12fa.chunk.js.map",
+    "runtime-main.js": "/DoggyDog/static/js/runtime-main.db09ca85.js",
+    "runtime-main.js.map": "/DoggyDog/static/js/runtime-main.db09ca85.js.map",
+    "static/js/2.7538cb37.chunk.js": "/DoggyDog/static/js/2.7538cb37.chunk.js",
+    "static/js/2.7538cb37.chunk.js.map": "/DoggyDog/static/js/2.7538cb37.chunk.js.map",
+    "static/js/3.da7a9e91.chunk.js": "/DoggyDog/static/js/3.da7a9e91.chunk.js",
+    "static/js/3.da7a9e91.chunk.js.map": "/DoggyDog/static/js/3.da7a9e91.chunk.js.map",
     "index.html": "/DoggyDog/index.html",
-    "static/css/main.851cdb2c.chunk.css.map": "/DoggyDog/static/css/main.851cdb2c.chunk.css.map",
-    "static/js/2.3e1429c1.chunk.js.LICENSE.txt": "/DoggyDog/static/js/2.3e1429c1.chunk.js.LICENSE.txt"
+    "static/css/main.aa514e80.chunk.css.map": "/DoggyDog/static/css/main.aa514e80.chunk.css.map",
+    "static/js/2.7538cb37.chunk.js.LICENSE.txt": "/DoggyDog/static/js/2.7538cb37.chunk.js.LICENSE.txt",
+    "static/media/Magnifying Glass.b185221b.png": "/DoggyDog/static/media/Magnifying Glass.b185221b.png",
+    "static/media/dog1.59bcae7f.png": "/DoggyDog/static/media/dog1.59bcae7f.png",
+    "static/media/dog2.039f0e94.png": "/DoggyDog/static/media/dog2.039f0e94.png",
+    "static/media/dog3.ca81c29f.png": "/DoggyDog/static/media/dog3.ca81c29f.png",
+    "static/media/fence2.875a57d3.png": "/DoggyDog/static/media/fence2.875a57d3.png",
+    "static/media/logo3.394f46fb.png": "/DoggyDog/static/media/logo3.394f46fb.png",
+    "static/media/menu.f0f48abb.png": "/DoggyDog/static/media/menu.f0f48abb.png",
+    "static/media/nodog.da379e3b.png": "/DoggyDog/static/media/nodog.da379e3b.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.b4d9e835.js",
-    "static/js/2.3e1429c1.chunk.js",
-    "static/css/main.851cdb2c.chunk.css",
-    "static/js/main.83bbd26e.chunk.js"
+    "static/js/runtime-main.db09ca85.js",
+    "static/js/2.7538cb37.chunk.js",
+    "static/css/main.aa514e80.chunk.css",
+    "static/js/main.7c9f12fa.chunk.js"
   ]
 }
