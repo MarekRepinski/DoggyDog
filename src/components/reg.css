@@ -136,11 +136,6 @@
     justify-self: left;
 }
 
-.ddc-reg.breed-info button {
-    font-size: 3vw;
-    font-weight: bold;
-}
-
 .ddc-reg.owner {
     grid-column: 2 / 4;
 }
@@ -171,6 +166,39 @@
 .ddc-reg.toggle-button {
     grid-column: 3 / 5;
     justify-self: right;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.ddc-reg.checked-out-lamp {
+    margin: 5px;
+    grid-column: 1;
+    height: 8vw;
+    width: 8vw;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-image: linear-gradient(to bottom right, rgb(100, 0, 0), rgb(50, 0, 0));
+}
+
+.ddc-reg.checked-out-lamp.on {
+    background-image: linear-gradient(to bottom right, rgb(255, 157, 157), rgb(255, 0, 0));
+    box-shadow: 2px 2px 5px rgba(100, 0, 0, 0.5);
+}
+
+.ddc-reg.checked-in-lamp {
+    margin: 5px;
+    grid-column: 2;
+    height: 8vw;
+    width: 8vw;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-image: linear-gradient(to bottom right, rgb(1, 50, 1), rgb(1, 25, 1));
+}
+
+.ddc-reg.checked-in-lamp.on {
+    background-image: linear-gradient(to bottom right, lightgreen, green);
+    box-shadow: 5px 5px 5px rgba(144, 238, 144, 0.5);
 }
 
 /* Animation to raise card to 90 deg*/
@@ -197,59 +225,6 @@
     0% {transform: rotateX(90deg); opacity: 0;}
     51% {transform: rotateX(90deg); opacity: 1;}
     100% {transform: rotateX(0deg); opacity: 1;}
-}
-
-
-/* Sliding toggle switch */
-.ddc-reg.switch {
-    position: relative;
-    display: inline-block;
-    width: 16vw;
-    height: 8vw;
-}
-
-/* Hide default HTML checkbox */
-.ddc-reg.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-/* The slider */
-.ddc-reg.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgb(233, 15, 15);
-    transition: .4s;
-    border-radius: 10%;
-}
-
-.ddc-reg.slider:before {
-    position: absolute;
-    content: "";
-    height: 6vw;
-    width: 6vw;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 10%;
-}
-
-input:checked + .ddc-reg.slider {
-    background-color: rgb(14, 204, 14);
-}
-
-input:focus + .ddc-reg.slider {
-    box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .ddc-reg.slider:before {
-    transform: translateX(6vw);
 }
 
 @media screen and (min-width: 600px) {

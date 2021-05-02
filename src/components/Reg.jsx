@@ -138,7 +138,7 @@ function cardTop(index, className, style, obj) {
     return (
         <div className={className} style={style}>
             <div className="ddc-reg flip-card-front">
-                <img src={obj.record[index].img === '' ? noDog: obj.record[index].img} alt={obj.record[index].name} />
+                <img src={obj.record[index].img === '' ? noDog : obj.record[index].img} alt={obj.record[index].name} />
                 <p className="ddc-reg dog-name"><span className="ddc-reg decoration">&hearts;&nbsp;
             </span>{obj.record[index].name}<span className="ddc-reg decoration">&nbsp;&hearts;</span></p>
             </div>
@@ -151,7 +151,13 @@ function CardBottom(index, className, style, obj) {
     let sex = 'unknown';
     if (obj.record[index].sex === 'female') { sex = String.fromCharCode(9792) }
     if (obj.record[index].sex === 'male') { sex = String.fromCharCode(9794) }
-    const [checked, setChecked] = React.useState(obj.record[index].present);
+    let checkInClass = 'ddc-reg checked-in-lamp';
+    let checkOutClass = 'ddc-reg checked-out-lamp';
+    if (obj.record[index].present) {
+        checkInClass += ' on';
+    } else {
+        checkOutClass += ' on';
+    }
 
     return (
         <div className={className} style={style}>
@@ -174,14 +180,8 @@ function CardBottom(index, className, style, obj) {
                 </div>
                 <div className="ddc-reg title checked-in">Checked in:</div>
                 <div className="ddc-reg toggle-button">
-                    <label className="ddc-reg switch">
-                        <input type="checkbox"
-                            id={obj.record[index].chipNumber}
-                            defaultChecked={checked}
-                            onChange={() => setChecked(!checked)}
-                        />
-                        <span className="ddc-reg slider"></span>
-                    </label>
+                    <div className={checkOutClass}></div>
+                    <div className={checkInClass}></div>
                 </div>
             </div>
         </div>
