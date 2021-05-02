@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/DoggyDog/static/css/main.aa514e80.chunk.css",
+    "main.css": "/DoggyDog/static/css/main.e6769429.chunk.css",
     "main.js": "/DoggyDog/static/js/main.7c9f12fa.chunk.js",
     "main.js.map": "/DoggyDog/static/js/main.7c9f12fa.chunk.js.map",
     "runtime-main.js": "/DoggyDog/static/js/runtime-main.db09ca85.js",
@@ -10,7 +10,7 @@
     "static/js/3.da7a9e91.chunk.js": "/DoggyDog/static/js/3.da7a9e91.chunk.js",
     "static/js/3.da7a9e91.chunk.js.map": "/DoggyDog/static/js/3.da7a9e91.chunk.js.map",
     "index.html": "/DoggyDog/index.html",
-    "static/css/main.aa514e80.chunk.css.map": "/DoggyDog/static/css/main.aa514e80.chunk.css.map",
+    "static/css/main.e6769429.chunk.css.map": "/DoggyDog/static/css/main.e6769429.chunk.css.map",
     "static/js/2.7538cb37.chunk.js.LICENSE.txt": "/DoggyDog/static/js/2.7538cb37.chunk.js.LICENSE.txt",
     "static/media/Magnifying Glass.b185221b.png": "/DoggyDog/static/media/Magnifying Glass.b185221b.png",
     "static/media/dog1.59bcae7f.png": "/DoggyDog/static/media/dog1.59bcae7f.png",
@@ -24,7 +24,7 @@
   "entrypoints": [
     "static/js/runtime-main.db09ca85.js",
     "static/js/2.7538cb37.chunk.js",
-    "static/css/main.aa514e80.chunk.css",
+    "static/css/main.e6769429.chunk.css",
     "static/js/main.7c9f12fa.chunk.js"
   ]
 }
