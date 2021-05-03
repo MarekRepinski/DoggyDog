@@ -1,3 +1,4 @@
+/* Small info about the app */ 
 import './about.css';
 import { useHistory, useParams } from 'react-router-dom';
 

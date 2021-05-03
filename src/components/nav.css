@@ -89,6 +89,7 @@
   display: block;
 }
 
+/* A dummy for the focus */
 .navx.dummy-input{
   height: 0px;
   padding: 0px;
@@ -107,10 +108,12 @@
   text-decoration: none;
 }
 
+/* Remove underline from links */
 .navx.menu-link{
   text-decoration-line: none;
 }
 
+/* Stop scaling when width reaches 600px */
 @media screen and (min-width: 600px) {
   .nav.menu-dd{
     margin-left: -60px;

@@ -1,9 +1,13 @@
+/* ----------------------------------------------------------------------------------- */
+/*                  Main page to show the registry of customers                        */
+/* ----------------------------------------------------------------------------------- */
+
 import React, { useState, useEffect } from 'react';
 import './reg.css';
 import noDog from '../img/nodog.png';
-let cardIndex = 0;
-let yDown = null;
-let animationGoingOn = false;
+let cardIndex = 0;                              // Index of customers array
+let yDown = null;                               // Check swipe
+let animationGoingOn = false;                   // Prevent action when animating 
 
 const Reg = () => {
     const [aminNext, setAnimNext] = useState(false);
@@ -15,6 +19,7 @@ const Reg = () => {
     let cardIndexPrev = (cardIndex - 1) < 0 ? recordLength - 1 : cardIndex - 1;
     let cardIndexNext = (cardIndex + 1) >= recordLength ? 0 : cardIndex + 1;
 
+    // First animation - when page is loaded
     useEffect(() => {
         if (recordLength > 1) {
             cardIndex = recordLength - 1;
@@ -29,7 +34,7 @@ const Reg = () => {
         }
     }, [])
 
-    // Next dog
+    // Animation to show Next dog
     const selectedAminationFlipCardFlipUp = {
         animation: 'flip-card-flip-animate-up 0.2s linear forwards'
     }
@@ -38,7 +43,7 @@ const Reg = () => {
         animation: 'flip-card-animate-bottom-down 0.4s linear forwards' /* */
     }
 
-    // Previous dog
+    // Animation to show  Previous dog
     const selectedAminationFlipCardFlipBottomUp = {
         animation: 'flip-card-animate-bottom-up 0.2s linear forwards'
     }
@@ -134,6 +139,7 @@ const Reg = () => {
     )
 }
 
+// Load the top half with data
 function cardTop(index, className, style, obj) {
     return (
         <div className={className} style={style}>
@@ -146,6 +152,7 @@ function cardTop(index, className, style, obj) {
     )
 }
 
+// Load the bottom half with data
 function CardBottom(index, className, style, obj) {
     let phoneNo = 'tel: ' + obj.record[index].owner.phoneNumber;
     let sex = 'unknown';
@@ -188,7 +195,7 @@ function CardBottom(index, className, style, obj) {
     )
 }
 
-
+// Special case when no customers are found
 function cardBottomEmpty(className, style) {
     return (
         <div className={className} style={style}>

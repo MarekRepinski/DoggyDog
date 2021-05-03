@@ -1,3 +1,6 @@
+/* ----------------------------------------------------------------------------------- */
+/*             Splashscreen on appa start with three jumping dogs                      */
+/* ----------------------------------------------------------------------------------- */
 import './splashscreen.css';
 import dog1 from '../img/dog1.png';
 import dog2 from '../img/dog2.png';

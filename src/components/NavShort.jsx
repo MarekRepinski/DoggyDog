@@ -1,3 +1,4 @@
+/* Top bar without search or menu, when starting app */ 
 import './navshort.css';
 import logo from '../img/logo3.png';
 

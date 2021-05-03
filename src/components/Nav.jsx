@@ -1,3 +1,4 @@
+/* Navigation top bar */ 
 import './nav.css';
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
@@ -7,10 +8,10 @@ import menuImg from '../img/menu.png';
 let searchString = '';
 
 const Nav = ({ searchDogs }) => {
-    const [showSearch, setShowSearch] = useState(false);
-    const [showMenu, setShowMenu] = useState(false);
-    const textInput = useRef(null);
-    const menuWindow = useRef(null);
+    const [showSearch, setShowSearch] = useState(false);    // Show the search window
+    const [showMenu, setShowMenu] = useState(false);        // Show the menu window
+    const textInput = useRef(null);                         // Focus on text input field in search window
+    const menuWindow = useRef(null);                        // Focus on hidden input fielsd in menu window
     let searchClass = 'nav search-container';
     let menuClass = 'nav menu-dd';
     searchClass = showSearch ? searchClass + ' show' : searchClass;

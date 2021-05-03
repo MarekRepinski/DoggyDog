@@ -43,6 +43,7 @@
     border: 0px;
 }
 
+/* The fence */
 .splash.anim #fence {
     position: absolute;
     width: 90%;
@@ -51,6 +52,7 @@
     z-index: 25;
 }
 
+/* The leftmost dog */
 .splash.anim #dog1 {
     position: absolute;
     left: 10%;
@@ -61,6 +63,7 @@
     z-index: 15;
 }
 
+/* The middle dog */
 .splash.anim #dog2 {
     position: absolute;
     left: 35%;
@@ -72,6 +75,7 @@
     z-index: 16;
 }
 
+/* The rightmost dog */
 .splash.anim #dog3 {
     position: absolute;
     left: 65%;
@@ -83,6 +87,7 @@
     z-index: 17;
 }
 
+/* Animation of the leftmost dog */
 @keyframes dog1-animate {
     0% {bottom: 0%; transform: rotate(0deg); left: 15%;}
     25% {bottom: 50%; transform: rotate(-5deg); left: 14%;}
@@ -91,6 +96,7 @@
     100% {bottom: 0%; transform: rotate(-60deg); left: 10%;}
 }
 
+/* Animation of the middle dog */
 @keyframes dog2-animate {
     0% {bottom: 0%; left: 35%;}
     25% {bottom: 60%; left: 37%;}
@@ -100,6 +106,7 @@
     100% {bottom: 0%; left: 35%;}
 }
 
+/* Animation of the rightmost dog */
 @keyframes dog3-animate {
     0% {bottom: 0%}
     25% {bottom: 60%}
